@@ -1,4 +1,4 @@
-import { RECEIVE_TWEETS } from '../actions/tweets'
+import { RECEIVE_TWEETS, ADD_TWEET } from '../actions/tweets'
 
 export const tweets = (state = {}, action) => {
   switch (action.type) {
@@ -6,6 +6,11 @@ export const tweets = (state = {}, action) => {
       return {
         ...state,
         ...action.tweets
+      }
+    case ADD_TWEET :
+      return {
+        ...state,
+        [action.tweet.id]: action.tweet
       }
     default:
       return state
