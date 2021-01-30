@@ -6,6 +6,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers/index'
 import LoadingBar from 'react-redux-loading-bar'
+import middleware from './middleware/index'
 
 function ColorfulBorder() {
   return (
@@ -23,7 +24,8 @@ function ColorfulBorder() {
 }
 
 const store = createStore(
-  reducers
+  reducers,
+  middleware
 )
 
 ReactDOM.render(
