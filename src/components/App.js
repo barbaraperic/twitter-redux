@@ -2,6 +2,8 @@ import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 
+import Feed from './Feed'
+
 export default function App () {
 
   const state = useSelector(state => state)
@@ -15,7 +17,7 @@ export default function App () {
 
   return (
     <div className='container'>
-      Redux Course Curriculum
+      <Feed />
     </div>
   )
 }
