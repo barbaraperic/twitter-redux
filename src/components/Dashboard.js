@@ -10,7 +10,9 @@ const Dashboard = () => {
   return (
     <div>
       {tweetId.map(id => (
+      <li key={id}>
         <Tweet id={id}/>
+      </li>
       ))}
     </div>
   )

@@ -64,15 +64,17 @@ li {
   padding: 20px;
 }
 
-.card-author {
+.card-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  text-transform: uppercase;
+  justify-content: end;
+  border: 1px solid white;
+  padding: 16px 0;
+  width: 400px;
+  height: 200px;
+  margin: 16px 0;
 }
 
-.card-author img {
+.avatar {
   width: 40px;
   height: 40px;
   border-radius: 20px;

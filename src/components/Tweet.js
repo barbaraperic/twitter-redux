@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { formatTweet } from '../utils/helpers'
+import { formatTweet, formatDate } from '../utils/helpers'
 
 const Tweet = ({ id }) => {
   const tweets = useSelector(state => state.tweets)
@@ -11,12 +11,20 @@ const Tweet = ({ id }) => {
   const tweet = tweets[id]
     ? formatTweet(tweets[id], users[tweets[id].author], authedUser)
     : null
-    
+
   console.log('t', tweet)
   
   return (
-    <div>
-
+    <div className="card-container">
+      <img 
+        src={tweet.avatarURL} 
+        alt="Avatar"
+        className="avatar"
+      />
+      <div>
+        <p style={{ margin: 0 }}>{tweet.name}</p>
+        <small style={{ fontSize: "11px"}}>{formatDate(tweet.timestamp)}</small>
+      </div>
     </div>
   )
 }
