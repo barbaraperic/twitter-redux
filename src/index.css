@@ -63,3 +63,18 @@ li {
   margin: 0 auto;
   padding: 20px;
 }
+
+.card-author {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.card-author img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin: 0 10px;
+}

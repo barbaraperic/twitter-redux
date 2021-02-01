@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 
-import Feed from './Feed'
+import Dashboard from './Dashboard'
 
 export default function App () {
 
@@ -17,7 +17,7 @@ export default function App () {
 
   return (
     <div className='container'>
-      <Feed />
+      <Dashboard />
     </div>
   )
 }
