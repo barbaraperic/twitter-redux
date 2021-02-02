@@ -8,7 +8,7 @@ const Dashboard = () => {
   .sort((a, b) => tweets[b].timestamp - tweets[a].timestamp)
   
   return (
-    <div>
+    <div className="tweet-container">
       {tweetId.map(id => (
       <li key={id}>
         <Tweet id={id}/>

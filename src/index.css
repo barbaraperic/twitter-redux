@@ -64,14 +64,19 @@ li {
   padding: 20px;
 }
 
+.tweet-container {
+  display: grid;
+  justify-content: center;
+}
+
 .card-container {
   display: flex;
-  justify-content: end;
   border: 1px solid white;
+  border-radius: 3px;
   padding: 16px;
-  width: 600px;
-  height: 200px;
-  margin: 16px 0;
+  max-width: 590px;
+  margin: 25px 0;
+  cursor: pointer;
 }
 
 .avatar {
@@ -79,4 +84,30 @@ li {
   height: 40px;
   border-radius: 20px;
   margin: 0 10px;
+}
+
+.tweet-icons {
+  display: flex;
+  align-items: center;
+}
+
+.tweet-icons > span {
+  margin: 0 15px 0 5px;
+  font-size: 18px;
+}
+
+.tweet-btn {
+  background: transparent;
+  border: none;
+  padding: 3px 0;
+}
+
+.tweet-icon {
+  font-size: 27px;
+  color: #697784;
+}
+
+.tweet-icon :hover {
+  color: #e0245e;
+  cursor: pointer;
 }

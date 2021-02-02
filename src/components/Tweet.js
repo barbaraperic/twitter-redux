@@ -24,11 +24,18 @@ const Tweet = ({ id }) => {
         <p style={{ margin: 0 }}>{tweet.name}</p>
         <small style={{ fontSize: "11px"}}>{formatDate(tweet.timestamp)}</small>
         <p>{tweet.text}</p>
-        <TiArrowBackOutline style={{ marginRight: '8px'}}/>
-        {tweet.hasLiked === true
-          ? <TiHeartFullOutline color='#e0245e'/>
-          : <TiHeartOutline />
-        }
+        <div className="tweet-icons">
+          <button className="tweet-btn">
+            <TiArrowBackOutline style={{ marginRight: '8px'}} className="tweet-icon"/>
+          </button>
+          <button className="tweet-btn">
+            {tweet.hasLiked === true
+              ? <TiHeartFullOutline color='#e0245e' className="tweet-icon"/>
+              : <TiHeartOutline className="tweet-icon"/>
+            }
+          </button>
+          <span>{tweet.likes || null}</span>
+        </div>
       </div>
     </div>
   )
