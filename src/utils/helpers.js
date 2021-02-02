@@ -6,6 +6,9 @@ export function formatDate (timestamp) {
 
 export const formatTweet = (tweet, author, authedUser ) => {
 
+  console.log('Tweet', tweet)
+  console.log('authedUser', authedUser)
+
   const { id, likes, replies, text, timestamp } = tweet
   const { name, avatarURL } = author
 
@@ -15,6 +18,7 @@ export const formatTweet = (tweet, author, authedUser ) => {
     name,
     authedUser,
     avatarURL,
+    hasLiked: likes.includes(authedUser),
     likes: likes.length,
     replies: replies.length,
     timestamp
