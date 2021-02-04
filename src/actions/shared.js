@@ -12,7 +12,7 @@ export const handleInitialData = () => {
   return (dispatch) => {
     dispatch(showLoading())
 
-    getInitialData()
+    return getInitialData()
     .then(({ users, tweets}) => {
       dispatch(receiveUsers(users))
       dispatch(receiveTweets(tweets))

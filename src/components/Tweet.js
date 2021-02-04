@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { formatTweet, formatDate } from '../utils/helpers'
 
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
@@ -9,12 +10,17 @@ const Tweet = ({ id }) => {
   const users = useSelector(state => state.users)
   const authedUser = useSelector(state => state.authedUser)
 
+  console.log('ID', id)
+  // const parentTweet = tweets[id] ? tweets[tweets[id].replyingTo] : null
+
   const tweet = tweets[id]
     ? formatTweet(tweets[id], users[tweets[id].author], authedUser)
     : null
+
+  console.log('parentTweet', parentTweet)
   
   return (
-    <div className="card-container">
+    <Link to={`/tweet/${id}`} className="card-container">
       <img 
         src={tweet.avatarURL} 
         alt="Avatar"
@@ -37,7 +43,7 @@ const Tweet = ({ id }) => {
           <span>{tweet.likes || null}</span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

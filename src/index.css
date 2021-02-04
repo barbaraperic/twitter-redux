@@ -77,6 +77,7 @@ li {
   max-width: 590px;
   margin: 25px 0;
   cursor: pointer;
+  color: white;
 }
 
 .avatar {
@@ -110,4 +111,25 @@ li {
 .tweet-icon :hover {
   color: #e0245e;
   cursor: pointer;
+}
+
+.new-tweet {
+  width: 100%;
+  max-width: 590px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  margin-top: 32px;
+  width: 300px;
+  padding: 8px 32px;
+  border-radius: 3px;
+  background: #eb30c1;
+  color: white;
+}
+
+.textarea {
+  padding: 8px 8px 46px;
 }

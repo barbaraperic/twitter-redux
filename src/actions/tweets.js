@@ -19,6 +19,21 @@ export const addTweet = (tweet) => {
   }
 }
 
+export const handleAddTweet = (text, replyingTo) => {
+  return (dispatch, getState) => {
+    dispatch(showLoading())
+    const { authedUser } = getState()
+    
+    return saveTweet({
+      text,
+      authedUser,
+      replyingTo
+    })
+    .then((tweet) => dispatch(addTweet(tweet)))
+    .then(() => hideLoading())
+  }
+}
+
 export const toggleLike = ({ id, authedUser, hasLiked}) => {
   return {
     type: TOGGLE_LIKE,
@@ -28,29 +43,16 @@ export const toggleLike = ({ id, authedUser, hasLiked}) => {
   }
 }
 
-export const handleAddTweet = (tweet) => {
-  return (dispatch, getState) => {
-    dispatch(showLoading())
-    const { authedUser } = getState()
-    
-    return saveTweet({
-      ...tweet,
-      authedUser
-    })
-    .then((tweet) => dispatch(addTweet(tweet)))
-    .then(() => hideLoading())
-  }
-}
-
-export const handleToggleLike = (tweet) => {
+export const handleToggleLike = (info) => {
   return (dispatch, getState) => {
 
-    const { authedUser } = getState();
+    dispatch(toggleLike(info))
 
-    return saveLikeToggle({
-      ...tweet,
-      authedUser
-
-    }).then((tweet) => dispatch(toggleLike(tweet)))
+    return saveLikeToggle(info)
+      .catch(e => {
+        console.warn('Error in handleToggleTweet: ', e)
+        dispatch(toggleLike(info))
+        alert('The was an error liking the tweet. Try again.')
+      })
   }
 }

@@ -12,12 +12,26 @@ export const tweets = (state = {}, action) => {
         ...action.tweets
       }
     case ADD_TWEET :
+      const { tweet } = action
+
+      let replyingTo = {}
+
+      if (tweet.replyingTo !== null) {
+        replyingTo = {
+          [tweet.replyingTo]: {
+            ...state[tweet.replyingTo],
+            replies: state[tweet.replyingTo].replies.concat([tweet.id])
+          }
+        }
+      }
       return {
         ...state,
-        [action.tweet.id]: action.tweet
+        [action.tweet.id]: action.tweet,
+        ...replyingTo
       }
     case TOGGLE_LIKE :
       const { id, authedUser } = action
+
       return {
         ...state,
         [id]: {
