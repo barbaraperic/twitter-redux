@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
 } from "react-router-dom";
 
@@ -14,21 +13,22 @@ import TweetPage from './TweetPage'
 
 export default function App () {
 
-  const state = useSelector(state => state)
+  const loading = useSelector(state => state.authedUser === null)
   const dispatch = useDispatch()
 
   React.useEffect(() => {
     dispatch(handleInitialData())
   },[dispatch])
 
-  console.log('state', state)
-
   return (
     <Router>
     <div className='container'>
       <Nav />
     </div>
-    <Switch>
+    {loading === true 
+    ? null 
+    :
+    <div>
       <Route exact path="/">
         <Dashboard />
       </Route>
@@ -38,7 +38,8 @@ export default function App () {
       <Route path="/new">
         <NewTweet />
       </Route>
-    </Switch>
+    </div>
+    }
     </Router>
   )
 }
