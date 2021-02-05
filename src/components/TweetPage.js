@@ -10,10 +10,7 @@ const TweetPage = () => {
   const tweets = useSelector(state => state.tweets)
 
   const replies = tweets[id].replies.map(replyId => replyId)
-
-  console.log('T', replies)
   
-  console.log('>>', id)
   return (
     <div>
       <Tweet id={id}/>

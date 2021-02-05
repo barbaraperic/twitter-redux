@@ -19,15 +19,15 @@ const NewTweet = () => {
 
   return (
     <div>
-      <form class="new-tweet" onSubmit={handleSubmit}>
+      <form className="new-tweet" onSubmit={handleSubmit}>
         <textarea 
-          class="textarea" 
+          className="textarea" 
           placeholder="What is happening?" 
           maxLength="280"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit" class="btn">Submit</button>
+        <button type="submit" className="btn">Submit</button>
       </form>
     </div>
   )

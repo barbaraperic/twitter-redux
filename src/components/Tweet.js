@@ -1,7 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { formatTweet, formatDate } from '../utils/helpers'
+import { handleToggleLike } from '../actions/tweets'
 
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
 
@@ -10,17 +12,26 @@ const Tweet = ({ id }) => {
   const authedUser = useSelector(state => state.authedUser)
   const tweets = useSelector(state => state.tweets)
 
-  console.log('ID', typeof id)
-  
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const parentTweet = tweets[id] ? tweets[tweets[id].replyingTo] : null
   const tweet = tweets[id]
     ? formatTweet(tweets[id], users[tweets[id].author], authedUser, parentTweet)
     : null
 
-  console.log(tweet)
   // if (tweet === null) {
   //   return <p>The tweet doesn't exist</p>
   // }
+
+  const handleLike = (e) => {
+    e.preventDefault()
+    dispatch(handleToggleLike({
+      id: tweet.id,
+      hasLiked: tweet.hasLiked,
+      authedUser
+    }))
+  }
   
   return (
     <Link to={`/tweet/${id}`} className="tweet">
@@ -38,7 +49,7 @@ const Tweet = ({ id }) => {
             <TiArrowBackOutline style={{ marginRight: '8px'}} className="tweet-icon"/>
           </button>
           <span>{tweet.replies || null}</span>
-          <button className="tweet-btn">
+          <button className="tweet-btn" onClick={handleLike}>
             {tweet.hasLiked === true
               ? <TiHeartFullOutline color='#e0245e' className="tweet-icon"/>
               : <TiHeartOutline className="tweet-icon"/>
