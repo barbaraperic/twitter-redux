@@ -23,7 +23,7 @@ const Tweet = ({ id }) => {
   // }
   
   return (
-    <Link to={`/tweet/${id}`} className="card-container">
+    <Link to={`/tweet/${id}`} className="tweet">
       <img 
         src={tweet.avatarURL} 
         alt="Avatar"
