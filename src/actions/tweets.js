@@ -19,18 +19,19 @@ export const addTweet = (tweet) => {
   }
 }
 
-export const handleAddTweet = (text, replyingTo) => {
+export function handleAddTweet (text, replyingTo) {
   return (dispatch, getState) => {
-    dispatch(showLoading())
     const { authedUser } = getState()
-    
+
+    dispatch(showLoading())
+
     return saveTweet({
       text,
-      authedUser,
+      author: authedUser,
       replyingTo
     })
-    .then((tweet) => dispatch(addTweet(tweet)))
-    .then(() => hideLoading())
+      .then((tweet) => dispatch(addTweet(tweet)))
+      .then(() => dispatch(hideLoading()))
   }
 }
 

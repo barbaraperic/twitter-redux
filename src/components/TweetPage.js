@@ -9,12 +9,15 @@ const TweetPage = () => {
   const { id } = useParams()
   const tweets = useSelector(state => state.tweets)
 
-  const replies = tweets[id].replies.map(replyId => replyId)
+  const replies = !tweets[id]
+  ? []
+  : tweets[id].replies.sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
+
   
   return (
     <div>
       <Tweet id={id}/>
-      <NewTweet />
+      <NewTweet id={id}/>
       {replies 
       ? replies.map(replyId => (
           <Tweet id={replyId}/>

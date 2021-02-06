@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { handleAddTweet } from '../actions/tweets'
 
-const NewTweet = () => {
+const NewTweet = ({ id }) => {
+  const tweets = useSelector(state => state.tweets)
 
   const [ input, setInput ] = useState('')
   const dispatch = useDispatch()
   const history = useHistory()
 
+  console.log('INPUT', input)
+
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(handleAddTweet({
-      text: input
-    }))
+    dispatch(handleAddTweet(
+      input,
+      id
+    ))
     history.push("/")
   }
 
