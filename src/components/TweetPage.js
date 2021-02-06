@@ -13,14 +13,15 @@ const TweetPage = () => {
   ? []
   : tweets[id].replies.sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
 
-  
   return (
     <div>
       <Tweet id={id}/>
       <NewTweet id={id}/>
       {replies 
       ? replies.map(replyId => (
+        <li key={replyId}>
           <Tweet id={replyId}/>
+        </li>
         ))
       : null
       }

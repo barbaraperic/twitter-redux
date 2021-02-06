@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { formatTweet, formatDate } from '../utils/helpers'
 import { handleToggleLike } from '../actions/tweets'
@@ -13,16 +12,15 @@ const Tweet = ({ id }) => {
   const tweets = useSelector(state => state.tweets)
 
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const parentTweet = tweets[id] ? tweets[tweets[id].replyingTo] : null
   const tweet = tweets[id]
     ? formatTweet(tweets[id], users[tweets[id].author], authedUser, parentTweet)
     : null
 
-  // if (tweet === null) {
-  //   return <p>The tweet doesn't exist</p>
-  // }
+  if (tweet === null) {
+    return <p>The tweet doesn't exist</p>
+  }
 
   const handleLike = (e) => {
     e.preventDefault()
@@ -42,7 +40,13 @@ const Tweet = ({ id }) => {
       />
       <div>
         <p style={{ margin: 0 }}>{tweet.name}</p>
-        <small style={{ fontSize: "11px"}}>{formatDate(tweet.timestamp)}</small>
+        <small style={{ fontSize: "11px"}}>{formatDate(tweet.timestamp)}, </small>
+        {parentTweet ?
+          <button className="reply-btn">
+            Replying to @{tweet.parent.author}
+          </button>
+          : null
+        }
         <p>{tweet.text}</p>
         <div className="tweet-icons">
           <button className="tweet-btn">
